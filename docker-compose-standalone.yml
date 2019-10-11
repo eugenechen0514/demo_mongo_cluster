@@ -3,9 +3,8 @@ services:
   database:
     image: mongo:4.2
     container_name: mongo4
+    network_mode: host
     command: mongod --dbpath /data/db --port 27041 --config /resource/mongod.yml
-    ports:
-      - "27017:27041"
     volumes:
-      - "./standalone/config:/resource"
-      - "./standalone/data:/data/db"
+      - ./standalone/config/mongod.yml:/resource/mongod.yml
+      - /Users/eugenechen/Documents/Projects/demo_mongo_cluster/standalone/data:/data/db
