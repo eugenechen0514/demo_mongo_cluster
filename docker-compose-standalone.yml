@@ -1,0 +1,11 @@
+version: '3'
+services:
+  database:
+    image: mongo:4.2
+    container_name: mongo4
+    command: mongod --dbpath /data/db --port 27041 --config /resource/mongod.yml
+    ports:
+      - "27017:27041"
+    volumes:
+      - "./standalone/config:/resource"
+      - "./standalone/data:/data/db"
