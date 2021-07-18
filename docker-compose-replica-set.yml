@@ -8,10 +8,6 @@ services:
     volumes:
       - ./replica/config/mongod.yml:/resource/mongod.yml
       - ./replica/data/rs1:/data/db
-    extra_hosts:
-      - "rs1.local:127.0.0.1"
-      - "rs2.local:127.0.0.1"
-      - "rs3.local:127.0.0.1"
   rs2:
     image: mongo:5.0
     ports:
@@ -20,10 +16,6 @@ services:
     volumes:
       - ./replica/config/mongod.yml:/resource/mongod.yml
       - ./replica/data/rs2:/data/db
-    extra_hosts:
-      - "rs1.local:127.0.0.1"
-      - "rs2.local:127.0.0.1"
-      - "rs3.local:127.0.0.1"
   rs3:
     image: mongo:5.0
     ports:
@@ -32,7 +24,3 @@ services:
     volumes:
       - ./replica/config/mongod.yml:/resource/mongod.yml
       - ./replica/data/rs3:/data/db
-    extra_hosts:
-      - "rs1.local:127.0.0.1"
-      - "rs2.local:127.0.0.1"
-      - "rs3.local:127.0.0.1"
