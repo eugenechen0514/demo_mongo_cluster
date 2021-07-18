@@ -83,5 +83,4 @@ services:
     command: mongos --port 27017 --configdb Config/config1:27031,config2:27032,config3:27033 --config /resource/mongos.yml
     volumes:
       - ./sharded/config/mongos.yml:/resource/mongos.yml
-      - ./sharded/data/sh2r3:/data/db
 
