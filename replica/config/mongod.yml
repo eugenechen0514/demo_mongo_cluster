@@ -4,4 +4,4 @@ storage:
   engine: wiredTiger
   wiredTiger:
     engineConfig:
-      cacheSizeGB: 0.1
+      cacheSizeGB: 0.25
