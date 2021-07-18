@@ -1,9 +1,9 @@
 version: '3'
 services:
   rs1:
-    image: mongo:4.2
-    container_name: rs1
-    network_mode: host
+    image: mongo:5.0
+    ports:
+      - 27041:27041
     command: mongod --replSet RS --port 27041 --dbpath /data/db --config /resource/mongod.yml
     volumes:
       - ./replica/config/mongod.yml:/resource/mongod.yml
@@ -13,9 +13,9 @@ services:
       - "rs2.local:127.0.0.1"
       - "rs3.local:127.0.0.1"
   rs2:
-    image: mongo:4.2
-    container_name: rs2
-    network_mode: host
+    image: mongo:5.0
+    ports:
+      - 27042:27042
     command: mongod --replSet RS --port 27042 --dbpath /data/db --config /resource/mongod.yml
     volumes:
       - ./replica/config/mongod.yml:/resource/mongod.yml
@@ -25,9 +25,9 @@ services:
       - "rs2.local:127.0.0.1"
       - "rs3.local:127.0.0.1"
   rs3:
-    image: mongo:4.2
-    container_name: rs3
-    network_mode: host
+    image: mongo:5.0
+    ports:
+      - 27043:27043
     command: mongod --replSet RS --port 27043 --dbpath /data/db --config /resource/mongod.yml
     volumes:
       - ./replica/config/mongod.yml:/resource/mongod.yml
