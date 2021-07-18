@@ -1,5 +1,6 @@
 version: '3'
 services:
+  # Step1: config server: config1 ~ config3
   config1:
     image: mongo:5.0
     ports:
@@ -24,6 +25,7 @@ services:
     volumes:
       - ./sharded/config/mongod.yml:/resource/mongod.yml
       - ./sharded/data/config3:/data/db
+  # Step2: shard server Shard1: sh1r1 ~ sh1r3
   sh1r1:
     image: mongo:5.0
     ports:
@@ -48,6 +50,7 @@ services:
     volumes:
       - ./sharded/config/mongod.yml:/resource/mongod.yml
       - ./sharded/data/sh1r3:/data/db
+  # Step3: shard server Shard2: sh2r1 ~ sh2r3
   sh2r1:
     image: mongo:5.0
     ports:
@@ -72,6 +75,7 @@ services:
     volumes:
       - ./sharded/config/mongod.yml:/resource/mongod.yml
       - ./sharded/data/sh2r3:/data/db
+  # Step4: router
   router:
     image: mongo:5.0
     ports:
