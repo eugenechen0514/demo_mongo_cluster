@@ -1,3 +1,83 @@
 version: '3'
 services:
+  config1:
+    image: mongo:5.0
+    ports:
+      - 27031:27031
+    command: mongod --configsvr --replSet Config --port 27031 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/config1:/data/db
+  config2:
+    image: mongo:5.0
+    ports:
+      - 27032:27032
+    command: mongod --configsvr --replSet Config --port 27032 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/config2:/data/db
+  config3:
+    image: mongo:5.0
+    ports:
+      - 27033:27033
+    command: mongod --configsvr --replSet Config --port 27033 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/config3:/data/db
+  sh1r1:
+    image: mongo:5.0
+    ports:
+      - 27041:27041
+    command: mongod --shardsvr --replSet Shard1 --port 27041 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/sh1r1:/data/db
+  sh1r2:
+    image: mongo:5.0
+    ports:
+      - 27042:27042
+    command: mongod --shardsvr --replSet Shard1 --port 27042 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/sh1r2:/data/db
+  sh1r3:
+    image: mongo:5.0
+    ports:
+      - 27043:27043
+    command: mongod --shardsvr --replSet Shard1 --port 27043 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/sh1r3:/data/db
+  sh2r1:
+    image: mongo:5.0
+    ports:
+      - 27051:27051
+    command: mongod --shardsvr --replSet Shard2 --port 27051 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/sh2r1:/data/db
+  sh2r2:
+    image: mongo:5.0
+    ports:
+      - 27052:27052
+    command: mongod --shardsvr --replSet Shard2 --port 27052 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/sh2r2:/data/db
+  sh2r3:
+    image: mongo:5.0
+    ports:
+      - 27053:27053
+    command: mongod --shardsvr --replSet Shard2 --port 27053 --dbpath /data/db --config /resource/mongod.yml
+    volumes:
+      - ./sharded/config/mongod.yml:/resource/mongod.yml
+      - ./sharded/data/sh2r3:/data/db
+  router:
+    image: mongo:5.0
+    ports:
+      - 27017:27017
+    command: mongos --port 27017 --configdb Config/config1:27031,config2:27032,config3:27033 --config /resource/mongos.yml
+    volumes:
+      - ./sharded/config/mongos.yml:/resource/mongos.yml
+      - ./sharded/data/sh2r3:/data/db
 

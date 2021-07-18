@@ -1,0 +1,7 @@
+net:
+  bindIpAll: true
+storage:
+  engine: wiredTiger
+  wiredTiger:
+    engineConfig:
+      cacheSizeGB: 0.25
