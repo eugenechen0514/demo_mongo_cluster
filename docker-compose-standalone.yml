@@ -1,8 +1,7 @@
 version: '3'
 services:
-  database:
+  standalone:
     image: mongo:5.0
-    container_name: mongo4
     ports:
       - 27017:27017
     command: mongod --dbpath /data/db --port 27017 --config /resource/mongod.yml
